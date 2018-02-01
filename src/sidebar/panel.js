@@ -231,6 +231,7 @@ function handleLocalContent(editor, content) {
         editor.setData(lastGood);
         ignoreNextLoadEvent = true;
       } else {
+        editor.setData("");
         editor.setData(data.notes2);
         chrome.runtime.sendMessage({
           action: 'kinto-save',
@@ -325,6 +326,7 @@ function getLastSyncedTime() {
   }
 
   if (isAuthenticated) {
+    const INITIAL_CONTENT = '';
     giveFeedbackButton.style.display = 'none';
     savingIndicator.classList.add('black');
     savingIndicator.innerHTML = browser.i18n.getMessage('syncComplete3', formatFooterTime(lastModified)); 
